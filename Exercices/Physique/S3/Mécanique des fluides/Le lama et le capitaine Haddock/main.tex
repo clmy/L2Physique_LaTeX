@@ -1,0 +1,187 @@
+\input{preamble}
+\input{format}
+
+\begin{document}
+
+\begin{Large}
+	\textsf{\textbf{Révisions}}
+	    
+	CC2 - Mécanique des fluides 1
+\end{Large}
+
+\vspace{1ex}
+
+\section*{Exercice - Le lama et le capitaine Haddock}
+
+Un lama est capable de cracher de l’eau s’il se sent agressé, comme par le capitaine Haddock
+(figure~\ref{fig:lama}). Le jet d’eau sort horizontalement à une vitesse de $v_0 = 5 \cdot \mathrm{m \cdot s^{-1}}$ à une hauteur de
+$h_0 = 2\,\mathrm{m}$.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.50\linewidth]{lamacrachantsurlecapthaddock.png}
+	\caption{Jet d’eau du lama visant le capitaine Haddock.}
+	\label{fig:lama}
+\end{figure}
+
+\begin{enumerate}
+	\item Déterminer la trajectoire du jet d’eau dans le plan $(Oxz)$. On pourra par exemple considérer une goutte qui est ainsi éjectée et déterminer l'équation de sa trajectoire $(x(t)$ et $z(t))$. \\
+	      \begin{answer}{}{answer-label}
+	      	\begin{itemize}
+	      		\item \textbf{Système :} \{goutte d'eau de masse $m$\}.
+	      		\item \textbf{Référentiel :} Terrestre, supposé galiléen.
+	      		\item \textbf{Repère :} $(O, \vec{e}_x, \vec{e}_z)$ tel que défini sur la figure.
+	      		\item \textbf{Bilan des forces :} La goutte est soumise uniquement à son poids $\vec{P} = m\vec{g}$ (la poussée d'Archimède et les frottements de l'air sont négligeables).
+	      	\end{itemize}
+	      	
+	      	D'après la deuxième loi de Newton dans un référentiel galiléen :
+	      	\begin{equation*}
+	      		\sum \vec{F}_{\text{ext}} = m \vec{a}
+	      	\end{equation*}
+	      	\begin{equation*}
+	      		m \vec{g} = m \vec{a} \Rightarrow \vec{a} = \vec{g}
+	      	\end{equation*}
+	      	\newpage
+	      	D'après l'énoncé, le jet sort horizontalement à une hauteur $h_0$.
+	      	\begin{itemize}
+	      		\item \textbf{Position :} $\vec{OM}_0 \begin{pmatrix} x(0) = 0 \\ z(0) = h_0 \end{pmatrix}$
+	      		\item \textbf{Vitesse :} $\vec{v}_0 \begin{pmatrix} v_x(0) = v_0 \\ v_z(0) = 0 \end{pmatrix}$
+	      	\end{itemize}
+	      	
+	      	On projette l'accélération $\vec{a} = \vec{g}$ sur les axes du repère, sachant que $\vec{g} = -g \vec{e}_z$.
+	      	
+	      	\medskip
+	      	
+	      	$$
+	      	\vec{a} \begin{cases} 
+	      	a_x(t) = 0 \\ 
+	      	a_z(t) = -g 
+	      	\end{cases}
+	      	$$
+	      	
+	      	Par intégration par rapport au temps, en utilisant les conditions initiales de vitesse :
+	      	
+	      	$$
+	      	\vec{v}(t) \begin{cases} 
+	      	v_x(t) = v_0 \\ 
+	      	v_z(t) = -g t 
+	      	\end{cases}
+	      	$$
+	      	
+	      	Par une seconde intégration, en utilisant les conditions initiales de position :
+	      	
+	      	\begin{equation*}
+	      		\boxed{
+	      			\vec{OM}(t) \begin{cases} 
+	      			x(t) = v_0 t \\ 
+	      			z(t) = -\frac{1}{2}g t^2 + h_0 
+	      			\end{cases}
+	      		}
+	      	\end{equation*}
+	      	
+	      	Pour obtenir la trajectoire dans le plan $(Oxz)$, on exprime le temps $t$ en fonction de $x$ à partir de la première équation :
+	      	$$ t = \frac{x}{v_0} $$
+	      	On injecte cette expression dans l'équation de $z(t)$ :
+	      	$$ z(x) = -\frac{1}{2}g \left( \frac{x}{v_0} \right)^2 + h_0 $$
+	      	
+	      	\begin{equation*}
+	      		\boxed{ z(x) = -\frac{g}{2v_0^2}x^2 + h_0 }
+	      	\end{equation*}
+	      	Il s'agit d'une parabole de concavité tournée vers le bas.
+	      \end{answer}
+	      \newpage
+	\item À quelle distance $D$ du lama le capitaine Haddock doit-il se trouver pour ne pas être atteint par l’eau ? Vous exprimerez D littéralement en fonction de $h_0$, $g$ et $v_0$ puis numériquement ($g = 9,8\,\mathrm{m \cdot s^{-2}}$).
+	      
+	      \begin{answer}{}{answer-label}
+	      	Pour ne pas être atteint par le jet d'eau, le capitaine Haddock doit se trouver à une distance $D$ supérieure à la portée horizontale du jet. La portée correspond alors à l'abscisse $x_P$ du point d'impact de la goutte sur le sol.
+	      	
+	      	La condition d'impact au sol se traduit par une altitude nulle :
+	      	$$ z(x_P) = 0 $$
+	      	
+	      	En utilisant l'équation de la trajectoire établie précédemment :
+	      	\begin{equation*}
+	      		-\frac{g}{2v_0^2}x_P^2 + h_0 = 0
+	      	\end{equation*}
+	      	
+	      	Isolons $x_P$ :
+	      	$$ \frac{g}{2v_0^2}x_P^2 = h_0 $$
+	      	$$ x_P^2 = \frac{2 h_0 v_0^2}{g} $$
+	      	
+	      	En ne gardant que la solution positive :
+	      	$$ x_P = \sqrt{\frac{2 h_0 v_0^2}{g}} = v_0 \sqrt{\frac{2 h_0}{g}} $$
+	      	
+	      	La distance minimale $D$ à laquelle le capitaine doit se trouver est donc égale à cette portée $x_P$.
+	      	\begin{equation*}
+	      		\boxed{ D = v_0 \sqrt{\frac{2 h_0}{g}} }
+	      	\end{equation*}
+	      	
+	      	\subsection*{Application numérique}
+	      	$$ D = 5 \times \sqrt{\frac{2 \times 2}{9,8}} $$
+	      	$$ D = 5 \times \sqrt{\frac{4}{9,8}} $$
+	      	$$ \boxed{D \approx 3,2\ \text{m}} $$
+	      	
+	      	
+	      	Le capitaine Haddock doit se tenir à plus de $3,2$ m du lama pour éviter d'être "mouillé".
+	      \end{answer}{}{}
+	      
+	      \newpage
+	      
+	\item Malheureusement, le capitaine Haddock se trouve à $1$ m du lama et se prend donc l’eau qui arrive avec une vitesse de norme $v_1$. Que vaut $v_1$ (on n’oubliera pas que le vecteur vitesse peut avoir plusieurs composantes non-nulles) ?
+	      
+	      \begin{answer}{}{answer-label}
+	      	
+	      	Le capitaine Haddock se trouve à une distance $x_1 = 1\ \text{m}$. Nous cherchons la norme du vecteur vitesse $\vec{v}_1$ à cet instant. \\
+	      	
+	      	On détermine d'abord l'instant $t_1$ auquel l'eau atteint l'abscisse $x_1$. On utilise l'équation horaire selon l'axe $(Ox)$ établie précédemment :
+	      	$$ x(t_1) = v_0 t_1 \implies t_1 = \frac{x_1}{v_0} $$
+	      	
+	      	Les composantes du vecteur vitesse à l'instant $t$ sont :
+	      	$$
+	      	\vec{v}(t) \begin{cases} 
+	      	v_x(t) = v_0 \\ 
+	      	v_z(t) = -g t 
+	      	\end{cases}
+	      	$$
+	      	
+	      	À l'instant $t_1$, les composantes deviennent :
+	      	\begin{itemize}
+	      		\item $v_{x_1} = v_0$
+	      		\item $v_{z_1} = -g t_1 = -g \frac{x_1}{v_0}$
+	      	\end{itemize}
+	      	
+	      	La norme $v_1$ du vecteur vitesse est donnée par la définition de la norme euclidienne :
+	      	$$ v_1 = \sqrt{v_{x_1}^2 + v_{z_1}^2} $$
+	      	
+	      	En remplaçant par les expressions trouvées :
+	      	$$ v_1 = \sqrt{(v_0)^2 + \left( - \frac{g x_1}{v_0} \right)^2} $$
+	      	
+	      	\begin{equation*}
+	      		\boxed{ v_1 = \sqrt{v_0^2 + \left( \frac{g x_1}{v_0} \right)^2} }
+	      	\end{equation*}
+	      	
+	      	\subsection*{Application numérique}
+	      	
+	      	Calcul de la composante verticale de la vitesse :
+	      	$$ v_{z,1} = - \frac{9,8 \times 1}{5} = -1,96\ \text{m}\cdot\text{s}^{-1} $$
+	      	
+	      	Calcul de la norme :
+	      	$$ v_1 = \sqrt{5^2 + (-1,96)^2} $$
+	      	$$ \boxed{v_1 \approx 5,4\ \text{m}\cdot\text{s}^{-1}} $$
+	      	
+	      \end{answer}{}{}
+	      
+	\item On estime qu’un objet arrivant avec une énergie de plus de $1$ J peut créer des hématomes. Le lama crache $0,5$ L d’eau (de masse $0,5$ kg). Risque-t-il de donner un œil au beurre noir au capitaine Haddock?
+	      
+	      \begin{answer}{}{answer-label}
+	      	L'expression de l'énergie cinétique de la masse d'eau $m$ arrivant à la vitesse $v_1$ est :
+	      	$$ E_c = \frac{1}{2} m v_1^2 $$
+	      	
+	      	\textbf{Application numérique}
+	      	$$ E_c = \frac{1}{2} \times 0,5 \times 28,84 $$
+	      	$$ \boxed{E_c \approx 7,2\ \text{J}} $$
+	      	
+	      	L'énergie de l'impact est plus de 7 fois supérieure à l'énergie nécessaire pour créer un hématome. Le capitaine Haddock risque donc fort probablement d'avoir un œil au beurre noir.
+	      \end{answer}{}{}
+	      
+\end{enumerate}
+\end{document}
